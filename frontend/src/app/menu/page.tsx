@@ -41,6 +41,7 @@ export default function MenuManagementPage() {
     setIsLoading(true)
     try {
       const restaurant = await authService.getUserRestaurant()
+      console.log('Loading menu items for restaurant:', restaurant)
       if (!restaurant) {
         setMenuItems([])
         setIsLoading(false)
@@ -53,6 +54,7 @@ export default function MenuManagementPage() {
         .eq('restaurant_id', restaurant.id)
         .order('category', { ascending: true })
         .order('name', { ascending: true })
+      console.log('Menu items loaded:', data)
       if (error) throw error
       setMenuItems(data || [])
     } catch (error) {
@@ -65,8 +67,10 @@ export default function MenuManagementPage() {
   }
 
   const handleSaveItem = async (item: Partial<MenuItem>) => {
+    setIsLoading(true)
     try {
       const restaurant = await authService.getUserRestaurant()
+      console.log('Saving menu item:', item, 'for restaurant:', restaurant)
       if (!restaurant) {
         // Demo mode - just update local state
         if (editingItem?.id) {
@@ -134,6 +138,8 @@ export default function MenuManagementPage() {
     } catch (error) {
       console.error('Error saving menu item:', error)
       toast.error('Failed to save menu item')
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -142,6 +148,7 @@ export default function MenuManagementPage() {
 
     try {
       const restaurant = await authService.getUserRestaurant()
+      console.log('Deleting menu item:', id, 'for restaurant:', restaurant)
       if (!restaurant) {
         // Demo mode - just update local state
         setMenuItems(menuItems.filter(item => item.id !== id))

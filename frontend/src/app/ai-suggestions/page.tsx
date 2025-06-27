@@ -62,6 +62,7 @@ export default function AISuggestionsPage() {
 
     setIsGenerating(true)
     try {
+      console.log('Calling /api/generate-recipe with:', generationForm)
       const response = await fetch('/api/generate-recipe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -69,6 +70,7 @@ export default function AISuggestionsPage() {
       })
 
       const data = await response.json()
+      console.log('API response:', data)
       
       if (data.success) {
         // Track whether we're in demo mode
@@ -113,8 +115,9 @@ export default function AISuggestionsPage() {
   }
 
   const fetchSuggestions = async () => {
+    setIsLoading(true)
     try {
-      setIsLoading(true)
+      console.log('Fetching AI suggestions...')
       // Start with some example suggestions
       const mockSuggestions: AISuggestion[] = [
         {
@@ -227,6 +230,7 @@ export default function AISuggestionsPage() {
       ]
       
       setSuggestions(mockSuggestions)
+      console.log('Mock suggestions loaded:', mockSuggestions)
     } catch (error) {
       console.error('Error fetching suggestions:', error)
       toast.error('Failed to fetch RestMan suggestions')

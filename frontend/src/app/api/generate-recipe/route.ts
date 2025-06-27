@@ -11,10 +11,14 @@ export async function POST(request: NextRequest) {
     cuisine = body.cuisine
     const restrictions = body.restrictions || []
 
+    console.log('Received generate-recipe request:', body)
+
     // Check if OpenAI API key is configured
     const apiKey = process.env.OPENAI_API_KEY
+    console.log('Using OpenAI key:', apiKey ? apiKey.substring(0, 7) + '...' : 'None')
     if (!apiKey) {
       // Return a high-quality demo recipe if no API key
+      console.log('No OpenAI API key found, returning demo recipe')
       return NextResponse.json({
         success: true,
         recipe: generateDemoRecipe(menuItem, cuisine),
@@ -53,7 +57,7 @@ export async function POST(request: NextRequest) {
       }
     `
 
-    console.log('Attempting to call OpenAI with API key:', apiKey.substring(0, 7) + '...')
+    console.log('Prompt sent to OpenAI:', prompt)
 
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
@@ -73,7 +77,7 @@ export async function POST(request: NextRequest) {
 
     console.log('OpenAI response received')
     const responseContent = completion.choices[0].message.content || '{}'
-    console.log('Response content:', responseContent.substring(0, 100) + '...')
+    console.log('Response content:', responseContent.substring(0, 200) + '...')
     
     const recipeData = JSON.parse(responseContent)
 

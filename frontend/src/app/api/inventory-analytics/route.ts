@@ -3,25 +3,30 @@ import { supabase } from '@/lib/supabase'
 
 export async function GET(request: NextRequest) {
   try {
-    // Fetch all menu items
+    console.log('Fetching menu items...')
     const { data: menuItems, error: menuError } = await supabase.from('menu_items').select('*')
     if (menuError) throw menuError
+    console.log('Menu items:', menuItems)
 
-    // Fetch all recipes
+    console.log('Fetching recipes...')
     const { data: recipes, error: recipeError } = await supabase.from('recipes').select('*')
     if (recipeError) throw recipeError
+    console.log('Recipes:', recipes)
 
-    // Fetch all order_items (to join sales to menu items)
+    console.log('Fetching order items...')
     const { data: orderItems, error: orderItemsError } = await supabase.from('order_items').select('*')
     if (orderItemsError) throw orderItemsError
+    console.log('Order items:', orderItems)
 
-    // Fetch all recipe_grocery_map (to map recipes to ingredients)
+    console.log('Fetching recipe-grocery map...')
     const { data: recipeGroceryMap, error: rgmError } = await supabase.from('recipe_grocery_map').select('*')
     if (rgmError) throw rgmError
+    console.log('Recipe-grocery map:', recipeGroceryMap)
 
-    // Fetch all groceries (for cost and wastage)
+    console.log('Fetching groceries...')
     const { data: groceries, error: groceryError } = await supabase.from('groceries').select('*')
     if (groceryError) throw groceryError
+    console.log('Groceries:', groceries)
 
     // Build analytics per menu item
     const summary = menuItems.map(menuItem => {
@@ -90,6 +95,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ success: true, summary })
   } catch (error) {
-    return NextResponse.json({ success: false, error: error instanceof Error ? error.message : 'Unknown error' }, { status: 500 })
+    console.error('Error in inventory analytics:', error)
+    return NextResponse.json({ error: error instanceof Error ? error.message : 'Unknown error' }, { status: 500 })
   }
 } 
