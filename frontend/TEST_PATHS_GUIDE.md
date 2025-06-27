@@ -1,6 +1,20 @@
-# RESTMAN UAT Test Paths Guide
+# RESTMAN UAT Test Paths & Installation Guide
 
-This document provides test login details and main navigation paths for each user role in the RESTMAN system. Share this with UAT testers to ensure all features are covered.
+## 📱 How to Install RESTMAN as an App (PWA)
+
+You can install RESTMAN directly from your browser on your phone—no app store needed!
+
+### For Android (Chrome, Edge, Brave, etc.):
+1. Open [https://restman-fe.vercel.app](https://restman-fe.vercel.app) in your browser.
+2. Tap the three-dot menu (⋮) in the top-right corner.
+3. Tap **"Add to Home screen"** or **"Install app"**.
+4. Confirm the install. The RESTMAN icon will appear on your home screen.
+
+### For iPhone (Safari):
+1. Open [https://restman-fe.vercel.app](https://restman-fe.vercel.app) in Safari.
+2. Tap the **Share** button (the square with an arrow).
+3. Scroll down and tap **"Add to Home Screen"**.
+4. Confirm and tap **Add**. The RESTMAN icon will appear on your home screen.
 
 ---
 
