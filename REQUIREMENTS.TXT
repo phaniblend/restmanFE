@@ -1,0 +1,155 @@
+RestMan: Restaurant Manager SRS & Dev Guide
+1. System Overview
+RestMan is a web platform for restaurant managers and chefs to plan, track, and optimize the usage of grocery items mapped to recipes. It offers real-time inventory visibility, wastage analytics, recipe allocation planning, and precise forecasting—all in a secure, easy-to-use dashboard.
+
+2. Key Capabilities
+Two-way mapping between groceries and recipes (many-to-many)
+
+Real-time inventory and wastage tracking
+
+Recipe-wise allocation and forecasting (percent-based, priority, and planned)
+
+Editable tables for fast menu/grocery management
+
+Forecasting: “How many dishes can I make with what’s left?”
+
+Strict user management & security
+
+Actionable, chef-friendly UI
+
+3. Feature Breakdown & Screens
+A. Grocery-Centric View
+Click on any grocery item (e.g. rice) to see:
+
+Procured on date
+
+Amount in stock
+
+Balance remaining
+
+Wastage reported (with reasons)
+
+Recipewise %-used: For each recipe, % of this grocery already used this month
+
+Recipewise %-forecast: For each recipe, % of this grocery can still be used/produced
+
+B. Recipe-Centric View
+Click on any recipe (e.g. fried rice) to see:
+
+List of grocery items used (and per-dish quantities)
+
+Orders sold (this month, this week, etc.)
+
+Possible orders: Based on what’s left in stock
+
+Wastage: Orders returned or wasted
+
+C. Recipe Allocation & Planning
+Recipe Wise Allocation button:
+
+Chef/manager can allocate each grocery to recipes by % (set priorities and expected splits)
+
+Monthly forecast entry screen (e.g., “500 fried rice, 300 soup, 200 snacks”)
+
+Calculates total grocery needed per recipe, and overall
+
+D. Menu/Grocery Admin
+Add/Edit/Delete menu (“recipes”) or grocery items
+
+Editable table interface for rapid changes
+
+E. User Management
+Role-based (manager, chef, viewer, admin)
+
+Secure logins, strict password policies
+
+4. Data Model Overview
+Table/Entity	Fields / Description
+Users	id, username, password-hash, role
+Groceries	id, name, unit, procured_date, initial_amt, current_amt, wastage_amt, wastage_reason
+Recipes	id, name, description
+RecipeGroceryMap	recipe_id, grocery_id, qty_per_order
+MonthlyPlan	recipe_id, planned_orders, month_year, %_allocation
+Sales	recipe_id, orders_sold, orders_returned, wastage
+
+5. Tech Stack & Integration Choices
+Layer/Phase	Tool/Service	Stack/Model (Recommended)	Notes
+Frontend	Retool, Appsmith, or React+Vite	Retool/Appsmith for no-code MVP	Editable tables, dashboards
+Styling	TailwindCSS or DaisyUI	Modern, responsive
+Backend/API	AWS Lambda + API Gateway, or Supabase	Supabase (Postgres+Auth+API)	100% free for MVP, instant REST API
+Database	Supabase (hosted Postgres), or AWS RDS	Postgres (relational)	Simple, scales as needed
+Auth	Supabase Auth, Clerk.dev	Supabase Auth recommended	RBAC, security policies built-in
+Hosting	Vercel/Netlify for FE, Supabase for API		Easy, free/cheap for MVP
+Docs/Specs	Notion, Google Docs, MkDocs		For onboarding/hand-off
+
+6. Dev Roadmap & Integration Steps
+Step 1: Data Model Setup
+Use Supabase to instantly create tables (Users, Groceries, Recipes, etc.)
+
+Use Supabase’s web UI for schema, triggers (auto-update balance), and RBAC
+
+Step 2: Admin Interfaces
+Build grocery/menu item admin as editable tables in Retool or Appsmith
+
+Or use CRUD UI in React with Material Table if needed
+
+Step 3: Inventory & Recipe Views
+Build dashboard cards/tables:
+
+Click grocery → show mapping, usage, forecast, wastage
+
+Click recipe → show groceries, orders sold, possible orders, wastage
+
+Step 4: Allocation/Planning
+“Recipe wise Allocation” button: opens wizard/modal
+
+Enter planned split for groceries by recipe (% per recipe)
+
+Show real-time calculation of forecast/orders possible
+
+Step 5: Security/User Management
+Enable Supabase Auth; assign roles (manager, chef, viewer)
+
+Set up strict password policy and audit log (Supabase has built-in logs)
+
+Step 6: Deployment
+Deploy frontend (Retool, Netlify, or Vercel)
+
+API/DB lives on Supabase
+
+Set up custom domain if needed
+
+7. Sample User Stories & Workflows
+Story 1: Manager sets the monthly plan
+
+Enters expected orders for each recipe
+
+App shows how much of each grocery is needed
+
+Story 2: Chef allocates groceries
+
+Sets % split of groceries across recipes
+
+Can override based on expected trends (e.g., more fried rice on weekends)
+
+Story 3: Staff tracks usage/wastage
+
+Clicks on rice → sees what’s in stock, where used, wastage, what’s left
+
+Story 4: Owner checks forecast
+
+For each recipe, sees “orders possible” based on groceries left
+
+8. Downloadable Version
+Download this doc as a text file.
+
+Summary Table (Tech Stack per Operation)
+Feature/Operation	No-Code Preferred Tool	Low-Code Option	Fully Custom Option
+Data Modeling	Supabase Table Editor	Retool, Appsmith	PgAdmin/Postgres
+Admin/CRUD UI	Retool/Appsmith Table	React+Material UI	AntDesign Table
+Inventory Dashboards	Retool/Appsmith Chart	React+Recharts	Custom D3
+Allocation Wizard	Retool Wizard	React Formik/Modal	
+Auth & Roles	Supabase Auth	Clerk/Auth0	Custom JWT
+Hosting	Vercel/Netlify/Supabase	AWS Amplify	Docker on EC2
+
+This approach ensures you can build a full-featured MVP in days, not weeks, using free/open tooling and minimal backend code!

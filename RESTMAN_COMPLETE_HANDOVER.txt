@@ -1,0 +1,760 @@
+🍽️ RESTMAN - COMPLETE PROJECT HANDOVER DOCUMENT
+================================================================================
+
+📋 TABLE OF CONTENTS
+================================================================================
+1. PROJECT OVERVIEW & SUMMARY
+2. TECH STACK & ARCHITECTURE  
+3. LOCAL SETUP INSTRUCTIONS
+4. DATABASE SCHEMA & CONFIGURATION
+5. ENVIRONMENT VARIABLES & SECRETS
+6. OPEN TODOs & KNOWN ISSUES
+7. DEPLOYMENT FLOW
+8. DEVELOPMENT BEST PRACTICES
+9. KEY CODE REFERENCES
+10. TROUBLESHOOTING GUIDE
+
+================================================================================
+1️⃣ PROJECT OVERVIEW & SUMMARY
+================================================================================
+
+WHAT IS RESTMAN?
+----------------
+RESTMAN is a comprehensive, mobile-first restaurant management platform designed for US restaurants. 
+It's a Progressive Web App (PWA) that helps restaurant owners, managers, and chefs optimize inventory, 
+track yields, prevent food waste, and manage recipes with AI assistance.
+
+CORE FEATURES:
+✅ Mobile-First PWA - Installable on phones as native app with offline functionality
+✅ Role-Based Access Control - Owner, Manager, Chef, Waiter roles with specific permissions
+✅ AI-Powered Intelligence - Smart recipe generation, yield variance detection, stale food prevention
+✅ Advanced Analytics - Real-time inventory tracking, yield performance monitoring, cost analysis
+✅ Intelligent Alert System - Stale risk alerts, yield variance alerts, stock level monitoring
+✅ Complete Restaurant Operations - Menu management, order processing, table management
+
+TARGET USERS:
+👑 Owner: Strategic insights, cost analysis, staff performance monitoring
+📊 Manager: Operational oversight, inventory management, procurement
+👨‍🍳 Chef: Recipe customization, batch tracking, AI suggestions
+👨‍💼 Waiter: Table management, order taking, customer service
+
+PROJECT STRUCTURE:
+```
+RESTMAN/
+├── frontend/                 # Next.js 14 PWA application
+│   ├── src/app/             # App Router pages
+│   ├── src/lib/             # Utility functions & services
+│   ├── public/              # Static assets & PWA manifest
+│   └── package.json         # Frontend dependencies
+├── backend/                 # Backend scripts & database schema
+│   ├── supabase-schema.sql  # Complete database schema
+│   └── ai-recipe-generator.js # AI recipe generation logic
+├── README.md               # Project documentation
+└── DEPLOYMENT-GUIDE.md     # Deployment instructions
+```
+
+================================================================================
+2️⃣ TECH STACK & ARCHITECTURE
+================================================================================
+
+FRONTEND STACK:
+---------------
+• Framework: Next.js 14 (App Router)
+• Styling: TailwindCSS + DaisyUI
+• State Management: React Hooks + Supabase Realtime
+• Charts: Recharts
+• Forms: React Hook Form + Zod validation
+• Notifications: React Hot Toast
+• Animations: Framer Motion
+• Icons: Lucide React
+• TypeScript: Full type safety
+
+BACKEND STACK:
+--------------
+• Database: Supabase (PostgreSQL)
+• Authentication: Supabase Auth with RLS
+• Real-time: WebSocket subscriptions
+• Storage: Supabase Storage (for images)
+• API: Next.js API Routes
+
+AI & EXTERNAL SERVICES:
+-----------------------
+• Recipe Generation: OpenAI GPT-3.5-turbo
+• SMS Notifications: Twilio
+• Email Notifications: Nodemailer
+• Push Notifications: Web Push API
+
+ARCHITECTURE DIAGRAM:
+```
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   Next.js PWA   │◄──►│   Supabase API   │◄──►│   PostgreSQL    │
+│   (Frontend)    │    │   (Backend)      │    │   (Database)    │
+└─────────────────┘    └──────────────────┘    └─────────────────┘
+        │                        │
+        ▼                        ▼
+┌─────────────────┐    ┌──────────────────┐
+│  Mobile Native  │    │   AI Services    │
+│   Experience    │    │  (Recipe Gen)    │
+└─────────────────┘    └──────────────────┘
+```
+
+================================================================================
+3️⃣ LOCAL SETUP INSTRUCTIONS
+================================================================================
+
+PREREQUISITES:
+--------------
+• Node.js 18+ 
+• npm or yarn
+• Git
+• Supabase account (free tier available)
+• Optional: Twilio account for SMS
+• Optional: OpenAI account for AI features
+
+STEP 1: CLONE REPOSITORY
+------------------------
+```bash
+git clone <repository-url>
+cd RESTMAN
+```
+
+STEP 2: INSTALL DEPENDENCIES
+----------------------------
+```bash
+# Install frontend dependencies
+cd frontend
+npm install
+
+# Install backend dependencies (if any)
+cd ../backend
+npm install
+```
+
+STEP 3: ENVIRONMENT SETUP
+-------------------------
+Create `.env.local` in the `frontend` directory:
+
+```env
+# Supabase Configuration (Required)
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+
+# OpenAI Integration (Optional - for enhanced AI features)
+OPENAI_API_KEY=sk-your-openai-key
+
+# Twilio SMS Alerts (Optional - for critical notifications)
+TWILIO_ACCOUNT_SID=your-twilio-sid
+TWILIO_AUTH_TOKEN=your-twilio-token
+TWILIO_PHONE_NUMBER=+1234567890
+
+# Email Notifications (Optional)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+
+# Analytics (Optional)
+NEXT_PUBLIC_GOOGLE_ANALYTICS=G-XXXXXXXXXX
+
+# Push Notifications (Optional)
+NEXT_PUBLIC_VAPID_PUBLIC_KEY=your-vapid-public-key
+VAPID_PRIVATE_KEY=your-vapid-private-key
+
+# Production Settings
+NODE_ENV=development
+NEXT_PUBLIC_APP_URL=http://localhost:3500
+```
+
+STEP 4: DATABASE SETUP
+----------------------
+1. Create Supabase Project:
+   - Go to https://supabase.com
+   - Create new project
+   - Note down your project URL and anon key
+
+2. Run Database Schema:
+   ```sql
+   -- Copy and run the entire schema from backend/supabase-schema.sql
+   -- This creates all tables, indexes, and RLS policies
+   ```
+
+3. Enable Row Level Security:
+   - All tables have RLS enabled by default
+   - Policies are defined in the schema file
+
+STEP 5: RUN DEVELOPMENT SERVER
+------------------------------
+```bash
+cd frontend
+npm run dev
+```
+
+The app will be available at `http://localhost:3500`
+
+STEP 6: TEST SETUP
+------------------
+1. Visit `http://localhost:3500`
+2. You should see the RestMan dashboard
+3. Test phone authentication at `http://localhost:3500/auth/phone`
+4. Use demo mode if SMS is not configured (OTP: 123456)
+
+================================================================================
+4️⃣ DATABASE SCHEMA & CONFIGURATION
+================================================================================
+
+KEY TABLES:
+-----------
+
+USERS & AUTHENTICATION:
+```sql
+users (
+  id, email, username, full_name, role, restaurant_id, 
+  phone, avatar_url, is_active, last_login, created_at, updated_at
+)
+```
+
+RESTAURANT MANAGEMENT:
+```sql
+restaurants (
+  id, name, address, phone, email, cuisine_type, 
+  owner_id, created_at, updated_at
+)
+```
+
+INVENTORY MANAGEMENT:
+```sql
+groceries (
+  id, restaurant_id, name, unit, category, procured_date, 
+  expiry_date, initial_amt, current_amt, wastage_amt, 
+  cost_per_unit, supplier_name, is_perishable, shelf_life_days,
+  temperature_storage, usage_velocity, reorder_level
+)
+```
+
+RECIPE SYSTEM:
+```sql
+recipes (
+  id, restaurant_id, name, description, category, cuisine_type,
+  prep_time_minutes, cook_time_minutes, serving_size, difficulty_level,
+  price, is_ai_generated, original_ai_recipe, chef_modifications,
+  last_modified_by, modification_reason, popularity_score,
+  avg_rating, total_orders
+)
+```
+
+BATCH PRODUCTION:
+```sql
+batch_production (
+  id, restaurant_id, recipe_id, batch_date, expected_yield,
+  actual_yield, variance_percentage, chef_id, shift_time,
+  quality_rating, notes, total_ingredient_cost, cost_per_dish
+)
+```
+
+ALERT SYSTEM:
+```sql
+stale_alerts (
+  id, restaurant_id, grocery_id, alert_type, severity,
+  quantity_at_risk, days_until_expiry, predicted_usage,
+  estimated_loss, notify_owner, notify_manager, notify_chef,
+  alert_date, resolved, resolved_by, resolved_at, resolution_action
+)
+```
+
+ROLE-BASED PERMISSIONS:
+-----------------------
+• Owner: Full access to all data and analytics
+• Manager: Operational data, inventory, procurement
+• Chef: Recipe management, batch tracking, AI suggestions
+• Waiter: Order management, table assignments
+
+================================================================================
+5️⃣ ENVIRONMENT VARIABLES & SECRETS
+================================================================================
+
+REQUIRED VARIABLES:
+-------------------
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
+
+OPTIONAL VARIABLES:
+-------------------
+```env
+# AI Features
+OPENAI_API_KEY=sk-your-openai-key
+
+# SMS Notifications
+TWILIO_ACCOUNT_SID=your-twilio-sid
+TWILIO_AUTH_TOKEN=your-twilio-token
+TWILIO_PHONE_NUMBER=+1234567890
+
+# Email Notifications
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+
+# Analytics
+NEXT_PUBLIC_GOOGLE_ANALYTICS=G-XXXXXXXXXX
+
+# Push Notifications
+NEXT_PUBLIC_VAPID_PUBLIC_KEY=your-vapid-public-key
+VAPID_PRIVATE_KEY=your-vapid-private-key
+
+# Production
+NODE_ENV=production
+NEXT_PUBLIC_APP_URL=https://your-domain.com
+```
+
+SECURITY NOTES:
+--------------
+• Never commit `.env.local` to version control
+• Use environment-specific files (`.env.development`, `.env.production`)
+• Rotate API keys regularly
+• Use service role keys only on server-side
+
+================================================================================
+6️⃣ OPEN TODOs & KNOWN ISSUES
+================================================================================
+
+CRITICAL TODOs:
+---------------
+🔴 HIGH PRIORITY:
+• Implement proper error handling for API failures
+• Add comprehensive input validation
+• Complete SMS notification testing
+• Add proper loading states for all async operations
+• Implement proper offline functionality
+• Add comprehensive unit tests
+• Complete PWA installation flow
+
+🟡 MEDIUM PRIORITY:
+• Add bulk import/export for inventory
+• Implement advanced reporting features
+• Add multi-language support
+• Complete chef recipe modification tracking
+• Add supplier management system
+• Implement advanced analytics dashboard
+• Add user activity logging
+
+🟢 LOW PRIORITY:
+• Add dark mode support
+• Implement advanced search functionality
+• Add recipe sharing between restaurants
+• Complete notification preferences UI
+• Add advanced inventory forecasting
+
+KNOWN ISSUES:
+-------------
+🐛 BUGS:
+• Phone authentication sometimes fails in demo mode
+• Recipe generation API occasionally times out
+• Real-time updates not working consistently
+• PWA installation not working on all devices
+• Database connection issues in production
+
+⚠️ LIMITATIONS:
+• No offline data persistence
+• Limited multi-tenant support
+• No advanced reporting
+• Basic notification system
+• No audit trail for changes
+
+🔧 TECHNICAL DEBT:
+• Code duplication in API routes
+• Inconsistent error handling
+• Missing TypeScript types for some components
+• No proper logging system
+• Incomplete documentation
+
+================================================================================
+7️⃣ DEPLOYMENT FLOW
+================================================================================
+
+STAGING DEPLOYMENT:
+-------------------
+1. Create staging environment:
+   ```bash
+   # Create staging branch
+   git checkout -b staging
+   
+   # Set staging environment variables
+   cp .env.example .env.staging
+   # Edit .env.staging with staging values
+   
+   # Deploy to staging
+   npm run deploy:staging
+   ```
+
+2. Test staging environment:
+   - Verify all features work
+   - Test database connections
+   - Check notification systems
+   - Validate PWA functionality
+
+PRODUCTION DEPLOYMENT:
+----------------------
+1. Prepare production build:
+   ```bash
+   # Switch to production branch
+   git checkout main
+   
+   # Set production environment variables
+   cp .env.example .env.production
+   # Edit .env.production with production values
+   
+   # Build for production
+   npm run build
+   ```
+
+2. Deploy to Vercel:
+   ```bash
+   # Deploy to production
+   npm run deploy
+   
+   # Or use Vercel CLI
+   vercel --prod
+   ```
+
+3. Post-deployment checks:
+   - Verify database connections
+   - Test authentication flow
+   - Check notification systems
+   - Validate PWA installation
+   - Monitor error logs
+
+ENVIRONMENT CONFIGURATION:
+--------------------------
+```json
+// vercel.json
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["bom1"],
+  "env": {
+    "NEXT_PUBLIC_APP_URL": "@production_app_url",
+    "NEXT_PUBLIC_SUPABASE_URL": "@supabase_url",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase_anon_key"
+  }
+}
+```
+
+CI/CD CONSIDERATIONS:
+---------------------
+• Use GitHub Actions for automated testing
+• Implement staging deployment pipeline
+• Add automated security scanning
+• Set up monitoring and alerting
+• Configure backup strategies
+
+================================================================================
+8️⃣ DEVELOPMENT BEST PRACTICES
+================================================================================
+
+CODE ORGANIZATION:
+------------------
+• Use TypeScript for all new code
+• Follow Next.js 14 App Router conventions
+• Organize components by feature
+• Use consistent naming conventions
+• Implement proper error boundaries
+
+STATE MANAGEMENT:
+-----------------
+• Use React hooks for local state
+• Use Supabase real-time for server state
+• Implement proper loading states
+• Handle error states gracefully
+• Use context for global state
+
+API DEVELOPMENT:
+----------------
+• Use Next.js API routes
+• Implement proper error handling
+• Add input validation with Zod
+• Use proper HTTP status codes
+• Add request/response logging
+
+DATABASE PRACTICES:
+-------------------
+• Use Row Level Security (RLS)
+• Implement proper indexes
+• Use transactions for complex operations
+• Add proper foreign key constraints
+• Implement soft deletes where appropriate
+
+SECURITY PRACTICES:
+-------------------
+• Validate all inputs
+• Sanitize user data
+• Use proper authentication
+• Implement rate limiting
+• Add CORS protection
+
+TESTING STRATEGY:
+-----------------
+• Write unit tests for utilities
+• Add integration tests for API routes
+• Test authentication flows
+• Validate database operations
+• Test PWA functionality
+
+PERFORMANCE OPTIMIZATION:
+-------------------------
+• Use Next.js Image component
+• Implement proper caching
+• Optimize database queries
+• Use code splitting
+• Minimize bundle size
+
+================================================================================
+9️⃣ KEY CODE REFERENCES
+================================================================================
+
+AUTHENTICATION:
+---------------
+File: `frontend/src/lib/auth-service.ts`
+- Phone OTP authentication
+- User profile management
+- Role-based access control
+- Restaurant association
+
+DATABASE OPERATIONS:
+--------------------
+File: `frontend/src/lib/supabase.ts`
+- Database utility functions
+- Real-time subscriptions
+- CRUD operations
+- Query helpers
+
+AI RECIPE GENERATION:
+---------------------
+File: `frontend/src/app/api/generate-recipe/route.ts`
+- OpenAI integration
+- Recipe generation logic
+- Fallback demo recipes
+- Error handling
+
+NOTIFICATION SYSTEM:
+--------------------
+File: `frontend/src/app/api/notifications/send/route.ts`
+- SMS notifications (Twilio)
+- Email notifications (Nodemailer)
+- Role-based alert routing
+- Notification preferences
+
+PWA CONFIGURATION:
+------------------
+File: `frontend/public/manifest.json`
+- PWA manifest settings
+- App icons and shortcuts
+- Installation configuration
+
+LAYOUT & NAVIGATION:
+--------------------
+File: `frontend/src/app/layout.tsx`
+- Root layout configuration
+- PWA meta tags
+- Theme setup
+
+DASHBOARD:
+----------
+File: `frontend/src/app/page.tsx`
+- Main dashboard
+- Real-time data display
+- Connection status
+- Role-based views
+
+DATABASE SCHEMA:
+----------------
+File: `backend/supabase-schema.sql`
+- Complete database structure
+- RLS policies
+- Indexes and constraints
+- Triggers and functions
+
+ENVIRONMENT CONFIG:
+-------------------
+File: `frontend/env.example`
+- All required environment variables
+- Optional service configurations
+- Production settings
+
+DEPLOYMENT CONFIG:
+------------------
+File: `frontend/vercel.json`
+- Vercel deployment settings
+- Environment variable mapping
+- Security headers
+
+================================================================================
+10️⃣ TROUBLESHOOTING GUIDE
+================================================================================
+
+COMMON ISSUES:
+--------------
+
+DATABASE CONNECTION ERRORS:
+---------------------------
+Problem: "Database disconnected" message
+Solution:
+1. Check Supabase URL and API key
+2. Verify database is running
+3. Check RLS policies
+4. Test connection in Supabase dashboard
+
+AUTHENTICATION ISSUES:
+----------------------
+Problem: Phone OTP not working
+Solution:
+1. Check Twilio configuration
+2. Verify phone number format
+3. Use demo mode for testing
+4. Check Supabase Auth settings
+
+PWA INSTALLATION ISSUES:
+------------------------
+Problem: App not installing on mobile
+Solution:
+1. Check manifest.json configuration
+2. Verify HTTPS in production
+3. Test service worker registration
+4. Check browser compatibility
+
+AI RECIPE GENERATION FAILURES:
+------------------------------
+Problem: Recipe generation API errors
+Solution:
+1. Check OpenAI API key
+2. Verify API quota limits
+3. Check network connectivity
+4. Use demo recipes as fallback
+
+REAL-TIME UPDATES NOT WORKING:
+------------------------------
+Problem: Data not updating in real-time
+Solution:
+1. Check Supabase real-time settings
+2. Verify subscription setup
+3. Check network connectivity
+4. Restart development server
+
+PERFORMANCE ISSUES:
+-------------------
+Problem: Slow loading or lag
+Solution:
+1. Check database query optimization
+2. Verify image optimization
+3. Check bundle size
+4. Monitor API response times
+
+DEBUGGING TOOLS:
+----------------
+• Browser Developer Tools
+• Supabase Dashboard
+• Vercel Analytics
+• Console logging
+• Network tab monitoring
+
+LOGGING:
+--------
+• Use console.log for development
+• Implement proper error logging
+• Monitor API response times
+• Track user interactions
+• Log authentication events
+
+MONITORING:
+-----------
+• Set up error tracking (Sentry)
+• Monitor API performance
+• Track user engagement
+• Monitor database performance
+• Set up uptime monitoring
+
+================================================================================
+🎯 MIGRATION CHECKLIST
+================================================================================
+
+BEFORE MIGRATION:
+-----------------
+□ Backup all environment variables
+□ Export database schema
+□ Document current configuration
+□ Test all critical features
+□ Verify all API keys are working
+□ Check all external service configurations
+
+DURING MIGRATION:
+-----------------
+□ Set up new environment
+□ Configure all environment variables
+□ Import database schema
+□ Test database connections
+□ Verify authentication flow
+□ Test all API endpoints
+□ Check PWA functionality
+□ Validate notification systems
+
+AFTER MIGRATION:
+----------------
+□ Update DNS settings
+□ Configure SSL certificates
+□ Set up monitoring
+□ Test all user flows
+□ Verify data integrity
+□ Check performance metrics
+□ Update documentation
+□ Train team members
+
+================================================================================
+📞 SUPPORT & CONTACTS
+================================================================================
+
+DEVELOPMENT TEAM:
+-----------------
+• Lead Developer: [Your Name]
+• Backend Developer: [Name]
+• Frontend Developer: [Name]
+• DevOps Engineer: [Name]
+
+EXTERNAL SERVICES:
+------------------
+• Supabase Support: https://supabase.com/support
+• Vercel Support: https://vercel.com/support
+• Twilio Support: https://support.twilio.com
+• OpenAI Support: https://help.openai.com
+
+DOCUMENTATION:
+--------------
+• Project README: README.md
+• API Documentation: [Link]
+• Database Schema: backend/supabase-schema.sql
+• Deployment Guide: DEPLOYMENT-GUIDE.md
+
+================================================================================
+🏁 CONCLUSION
+================================================================================
+
+This handover document provides a comprehensive overview of the RESTMAN project, 
+including setup instructions, deployment procedures, known issues, and best practices. 
+Use this as a reference guide for continued development and maintenance.
+
+Key Points to Remember:
+• Always test in staging before production
+• Monitor database performance regularly
+• Keep environment variables secure
+• Follow TypeScript best practices
+• Implement proper error handling
+• Maintain comprehensive documentation
+
+Good luck with the project! 🚀
+
+================================================================================
+EOF - RESTMAN COMPLETE HANDOVER DOCUMENT
+================================================================================

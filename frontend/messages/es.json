@@ -1,0 +1,173 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "add": "Agregar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "close": "Cerrar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "submit": "Enviar",
+    "confirm": "Confirmar",
+    "yes": "Sí",
+    "no": "No",
+    "ok": "OK",
+    "error": "Error",
+    "success": "Éxito",
+    "warning": "Advertencia",
+    "info": "Información"
+  },
+  "currency": {
+    "symbol": "$",
+    "code": "USD",
+    "name": "Dólar Estadounidense",
+    "format": "en-US"
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "signup": "Registrarse",
+    "logout": "Cerrar Sesión",
+    "phone": "Número de Teléfono",
+    "otp": "Código de Verificación",
+    "sendOtp": "Enviar Código",
+    "verifyOtp": "Verificar e Iniciar Sesión",
+    "enterPhone": "Ingrese su Número de Teléfono",
+    "enterOtp": "Ingrese el código OTP de 6 dígitos",
+    "otpSent": "Código enviado a {phone}",
+    "otpSuccess": "¡OTP enviado exitosamente!",
+    "otpError": "OTP inválido. Inténtelo de nuevo.",
+    "demoMode": "Modo Demo: Use OTP 123456",
+    "changePhone": "Cambiar número de teléfono",
+    "demoLoginSuccess": "¡Inicio de sesión demo exitoso!"
+  },
+  "dashboard": {
+    "title": "Panel de Control",
+    "revenue": "Ingresos",
+    "orders": "Pedidos",
+    "inventory": "Inventario",
+    "waste": "Desperdicio",
+    "efficiency": "Eficiencia",
+    "revenueToday": "Ingresos de Hoy",
+    "totalRevenue": "Ingresos Totales",
+    "ordersToday": "Pedidos de Hoy",
+    "totalOrders": "Pedidos Totales",
+    "lowStock": "Stock Bajo",
+    "criticalStock": "Stock Crítico",
+    "wasteReduction": "Reducción de Desperdicio",
+    "kitchenEfficiency": "Eficiencia de Cocina",
+    "mostOrdered": "Más pedido hoy",
+    "revenueIncrease": "aumento"
+  },
+  "inventory": {
+    "title": "Gestión de Inventario",
+    "addItem": "Agregar Artículo",
+    "editItem": "Editar Artículo",
+    "itemName": "Nombre del Artículo",
+    "category": "Categoría",
+    "quantity": "Cantidad",
+    "unit": "Unidad",
+    "costPerUnit": "Costo por Unidad",
+    "supplier": "Proveedor",
+    "expiryDate": "Fecha de Vencimiento",
+    "currentStock": "Stock Actual",
+    "minStock": "Stock Mínimo",
+    "totalValue": "Valor Total",
+    "status": {
+      "good": "Bueno",
+      "low": "Bajo",
+      "critical": "Crítico",
+      "out": "Sin Stock"
+    },
+    "categories": {
+      "MEAT": "Carne",
+      "FISH": "Pescado",
+      "DAIRY": "Lácteos",
+      "VEGETABLES": "Verduras",
+      "FRUITS": "Frutas",
+      "GRAINS": "Granos",
+      "SPICES": "Especias",
+      "OTHER": "Otros"
+    }
+  },
+  "menu": {
+    "title": "Gestión de Menú",
+    "addItem": "Agregar Artículo del Menú",
+    "editItem": "Editar Artículo del Menú",
+    "itemName": "Nombre del Artículo",
+    "description": "Descripción",
+    "category": "Categoría",
+    "price": "Precio",
+    "image": "Imagen",
+    "available": "Disponible",
+    "categories": {
+      "APPETIZER": "Entrada",
+      "MAIN_COURSE": "Plato Principal",
+      "DESSERT": "Postre",
+      "BEVERAGE": "Bebida",
+      "SPECIAL": "Especial"
+    }
+  },
+  "orders": {
+    "title": "Gestión de Pedidos",
+    "newOrder": "Nuevo Pedido",
+    "orderNumber": "Pedido #{number}",
+    "table": "Mesa",
+    "customer": "Cliente",
+    "items": "Artículos",
+    "total": "Total",
+    "status": {
+      "PENDING": "Pendiente",
+      "PREPARING": "Preparando",
+      "READY": "Listo",
+      "DELIVERED": "Entregado",
+      "CANCELLED": "Cancelado"
+    }
+  },
+  "recipes": {
+    "title": "Gestión de Recetas",
+    "addRecipe": "Agregar Receta",
+    "editRecipe": "Editar Receta",
+    "recipeName": "Nombre de la Receta",
+    "description": "Descripción",
+    "ingredients": "Ingredientes",
+    "instructions": "Instrucciones",
+    "prepTime": "Tiempo de Preparación",
+    "cookTime": "Tiempo de Cocción",
+    "servings": "Porciones",
+    "difficulty": "Dificultad",
+    "cost": "Costo"
+  },
+  "setup": {
+    "title": "Configuración del Restaurante",
+    "restaurantName": "Nombre del Restaurante",
+    "address": "Dirección",
+    "phone": "Teléfono",
+    "email": "Correo Electrónico",
+    "cuisineType": "Tipo de Cocina",
+    "ownerName": "Nombre del Propietario",
+    "setupComplete": "Configuración Completa",
+    "welcomeMessage": "¡Bienvenido a RestMan! Configuremos su restaurante."
+  },
+  "roles": {
+    "owner": "Propietario",
+    "manager": "Gerente",
+    "chef": "Chef",
+    "waiter": "Camarero"
+  },
+  "navigation": {
+    "dashboard": "Panel de Control",
+    "inventory": "Inventario",
+    "menu": "Menú",
+    "orders": "Pedidos",
+    "recipes": "Recetas",
+    "procurement": "Compras",
+    "alerts": "Alertas",
+    "profile": "Perfil",
+    "settings": "Configuración"
+  }
+} 

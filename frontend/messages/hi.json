@@ -1,0 +1,173 @@
+{
+  "common": {
+    "loading": "लोड हो रहा है...",
+    "save": "सहेजें",
+    "cancel": "रद्द करें",
+    "delete": "हटाएं",
+    "edit": "संपादित करें",
+    "add": "जोड़ें",
+    "search": "खोजें",
+    "filter": "फ़िल्टर",
+    "close": "बंद करें",
+    "back": "वापस",
+    "next": "अगला",
+    "previous": "पिछला",
+    "submit": "सबमिट करें",
+    "confirm": "पुष्टि करें",
+    "yes": "हाँ",
+    "no": "नहीं",
+    "ok": "ठीक है",
+    "error": "त्रुटि",
+    "success": "सफलता",
+    "warning": "चेतावनी",
+    "info": "जानकारी"
+  },
+  "currency": {
+    "symbol": "$",
+    "code": "USD",
+    "name": "अमेरिकी डॉलर",
+    "format": "en-US"
+  },
+  "auth": {
+    "login": "लॉगिन",
+    "signup": "साइन अप",
+    "logout": "लॉगआउट",
+    "phone": "फ़ोन नंबर",
+    "otp": "सत्यापन कोड",
+    "sendOtp": "कोड भेजें",
+    "verifyOtp": "सत्यापित करें और लॉगिन करें",
+    "enterPhone": "अपना फ़ोन नंबर दर्ज करें",
+    "enterOtp": "6 अंकों का OTP दर्ज करें",
+    "otpSent": "कोड {phone} पर भेजा गया",
+    "otpSuccess": "OTP सफलतापूर्वक भेजा गया!",
+    "otpError": "अमान्य OTP। कृपया पुनः प्रयास करें।",
+    "demoMode": "डेमो मोड: OTP 123456 का उपयोग करें",
+    "changePhone": "फ़ोन नंबर बदलें",
+    "demoLoginSuccess": "डेमो लॉगिन सफल!"
+  },
+  "dashboard": {
+    "title": "डैशबोर्ड",
+    "revenue": "राजस्व",
+    "orders": "ऑर्डर",
+    "inventory": "इन्वेंटरी",
+    "waste": "बर्बादी",
+    "efficiency": "दक्षता",
+    "revenueToday": "आज का राजस्व",
+    "totalRevenue": "कुल राजस्व",
+    "ordersToday": "आज के ऑर्डर",
+    "totalOrders": "कुल ऑर्डर",
+    "lowStock": "कम स्टॉक",
+    "criticalStock": "गंभीर स्टॉक",
+    "wasteReduction": "बर्बादी में कमी",
+    "kitchenEfficiency": "रसोई की दक्षता",
+    "mostOrdered": "आज सबसे ज्यादा ऑर्डर",
+    "revenueIncrease": "वृद्धि"
+  },
+  "inventory": {
+    "title": "इन्वेंटरी प्रबंधन",
+    "addItem": "आइटम जोड़ें",
+    "editItem": "आइटम संपादित करें",
+    "itemName": "आइटम का नाम",
+    "category": "श्रेणी",
+    "quantity": "मात्रा",
+    "unit": "इकाई",
+    "costPerUnit": "प्रति इकाई लागत",
+    "supplier": "आपूर्तिकर्ता",
+    "expiryDate": "समाप्ति तिथि",
+    "currentStock": "वर्तमान स्टॉक",
+    "minStock": "न्यूनतम स्टॉक",
+    "totalValue": "कुल मूल्य",
+    "status": {
+      "good": "अच्छा",
+      "low": "कम",
+      "critical": "गंभीर",
+      "out": "स्टॉक में नहीं"
+    },
+    "categories": {
+      "MEAT": "मांस",
+      "FISH": "मछली",
+      "DAIRY": "दूध",
+      "VEGETABLES": "सब्जियां",
+      "FRUITS": "फल",
+      "GRAINS": "अनाज",
+      "SPICES": "मसाले",
+      "OTHER": "अन्य"
+    }
+  },
+  "menu": {
+    "title": "मेनू प्रबंधन",
+    "addItem": "मेनू आइटम जोड़ें",
+    "editItem": "मेनू आइटम संपादित करें",
+    "itemName": "आइटम का नाम",
+    "description": "विवरण",
+    "category": "श्रेणी",
+    "price": "कीमत",
+    "image": "छवि",
+    "available": "उपलब्ध",
+    "categories": {
+      "APPETIZER": "शुरुआती",
+      "MAIN_COURSE": "मुख्य पाठ्यक्रम",
+      "DESSERT": "मिठाई",
+      "BEVERAGE": "पेय",
+      "SPECIAL": "विशेष"
+    }
+  },
+  "orders": {
+    "title": "ऑर्डर प्रबंधन",
+    "newOrder": "नया ऑर्डर",
+    "orderNumber": "ऑर्डर #{number}",
+    "table": "टेबल",
+    "customer": "ग्राहक",
+    "items": "आइटम",
+    "total": "कुल",
+    "status": {
+      "PENDING": "लंबित",
+      "PREPARING": "तैयार हो रहा",
+      "READY": "तैयार",
+      "DELIVERED": "पहुंचाया गया",
+      "CANCELLED": "रद्द"
+    }
+  },
+  "recipes": {
+    "title": "रेसिपी प्रबंधन",
+    "addRecipe": "रेसिपी जोड़ें",
+    "editRecipe": "रेसिपी संपादित करें",
+    "recipeName": "रेसिपी का नाम",
+    "description": "विवरण",
+    "ingredients": "सामग्री",
+    "instructions": "निर्देश",
+    "prepTime": "तैयारी का समय",
+    "cookTime": "पकाने का समय",
+    "servings": "सर्विंग्स",
+    "difficulty": "कठिनाई",
+    "cost": "लागत"
+  },
+  "setup": {
+    "title": "रेस्तरां सेटअप",
+    "restaurantName": "रेस्तरां का नाम",
+    "address": "पता",
+    "phone": "फ़ोन",
+    "email": "ईमेल",
+    "cuisineType": "खाना पकाने का प्रकार",
+    "ownerName": "मालिक का नाम",
+    "setupComplete": "सेटअप पूरा",
+    "welcomeMessage": "RestMan में आपका स्वागत है! आइए आपके रेस्तरां को सेट करें।"
+  },
+  "roles": {
+    "owner": "मालिक",
+    "manager": "प्रबंधक",
+    "chef": "शेफ",
+    "waiter": "वेटर"
+  },
+  "navigation": {
+    "dashboard": "डैशबोर्ड",
+    "inventory": "इन्वेंटरी",
+    "menu": "मेनू",
+    "orders": "ऑर्डर",
+    "recipes": "रेसिपी",
+    "procurement": "खरीद",
+    "alerts": "अलर्ट",
+    "profile": "प्रोफ़ाइल",
+    "settings": "सेटिंग्स"
+  }
+} 

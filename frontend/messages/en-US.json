@@ -1,0 +1,283 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "confirm": "Confirm",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information"
+  },
+  "currency": {
+    "symbol": "$",
+    "code": "USD",
+    "name": "US Dollar",
+    "format": "en-US"
+  },
+  "auth": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout",
+    "phone": "Phone Number",
+    "otp": "Verification Code",
+    "sendOtp": "Send Code",
+    "verifyOtp": "Verify & Login",
+    "enterPhone": "Enter Your Phone Number",
+    "enterOtp": "Enter 6-digit OTP",
+    "otpSent": "Code sent to {phone}",
+    "otpSuccess": "OTP sent successfully!",
+    "otpError": "Invalid OTP. Please try again.",
+    "demoMode": "Demo Mode: Use OTP 123456",
+    "changePhone": "Change phone number",
+    "demoLoginSuccess": "Demo login successful!"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "revenue": "Revenue",
+    "orders": "Orders",
+    "inventory": "Inventory",
+    "waste": "Waste",
+    "efficiency": "Efficiency",
+    "revenueToday": "Revenue Today",
+    "totalRevenue": "Total Revenue",
+    "ordersToday": "Orders Today",
+    "totalOrders": "Total Orders",
+    "lowStock": "Low Stock",
+    "criticalStock": "Critical Stock",
+    "wasteReduction": "Waste Reduction",
+    "kitchenEfficiency": "Kitchen Efficiency",
+    "mostOrdered": "Most ordered today",
+    "revenueIncrease": "increase"
+  },
+  "inventory": {
+    "title": "Inventory Management",
+    "addItem": "Add Item",
+    "editItem": "Edit Item",
+    "itemName": "Item Name",
+    "category": "Category",
+    "quantity": "Quantity",
+    "unit": "Unit",
+    "costPerUnit": "Cost per Unit",
+    "supplier": "Supplier",
+    "expiryDate": "Expiry Date",
+    "currentStock": "Current Stock",
+    "minStock": "Min Stock",
+    "totalValue": "Total Value",
+    "status": {
+      "good": "Good",
+      "low": "Low",
+      "critical": "Critical",
+      "out": "Out of Stock"
+    },
+    "categories": {
+      "MEAT": "Meat",
+      "FISH": "Fish",
+      "DAIRY": "Dairy",
+      "VEGETABLES": "Vegetables",
+      "FRUITS": "Fruits",
+      "GRAINS": "Grains",
+      "SPICES": "Spices",
+      "OTHER": "Other"
+    },
+    "units": {
+      "kg": "kg",
+      "g": "g",
+      "l": "L",
+      "ml": "ml",
+      "pcs": "pcs",
+      "pack": "pack"
+    }
+  },
+  "menu": {
+    "title": "Menu Management",
+    "addItem": "Add Menu Item",
+    "editItem": "Edit Menu Item",
+    "itemName": "Item Name",
+    "description": "Description",
+    "category": "Category",
+    "price": "Price",
+    "image": "Image",
+    "available": "Available",
+    "categories": {
+      "APPETIZER": "Appetizer",
+      "MAIN_COURSE": "Main Course",
+      "DESSERT": "Dessert",
+      "BEVERAGE": "Beverage",
+      "SPECIAL": "Special"
+    }
+  },
+  "orders": {
+    "title": "Order Management",
+    "newOrder": "New Order",
+    "orderNumber": "Order #{number}",
+    "table": "Table",
+    "customer": "Customer",
+    "items": "Items",
+    "total": "Total",
+    "status": {
+      "PENDING": "Pending",
+      "PREPARING": "Preparing",
+      "READY": "Ready",
+      "DELIVERED": "Delivered",
+      "CANCELLED": "Cancelled"
+    },
+    "actions": {
+      "accept": "Accept",
+      "startPreparing": "Start Preparing",
+      "markReady": "Mark Ready",
+      "deliver": "Deliver",
+      "cancel": "Cancel"
+    }
+  },
+  "recipes": {
+    "title": "Recipe Management",
+    "addRecipe": "Add Recipe",
+    "editRecipe": "Edit Recipe",
+    "recipeName": "Recipe Name",
+    "description": "Description",
+    "ingredients": "Ingredients",
+    "instructions": "Instructions",
+    "prepTime": "Prep Time",
+    "cookTime": "Cook Time",
+    "servings": "Servings",
+    "difficulty": "Difficulty",
+    "cost": "Cost",
+    "difficultyLevels": {
+      "EASY": "Easy",
+      "MEDIUM": "Medium",
+      "HARD": "Hard"
+    },
+    "ingredientUnits": {
+      "grams": "grams",
+      "kg": "kg",
+      "ml": "ml",
+      "liter": "liter",
+      "cups": "cups",
+      "pieces": "pieces",
+      "tbsp": "tbsp",
+      "tsp": "tsp",
+      "pinch": "pinch"
+    }
+  },
+  "procurement": {
+    "title": "Procurement",
+    "newOrder": "New Procurement Order",
+    "supplier": "Supplier",
+    "items": "Items",
+    "totalCost": "Total Cost",
+    "orderDate": "Order Date",
+    "expectedDelivery": "Expected Delivery",
+    "status": {
+      "PENDING": "Pending",
+      "ORDERED": "Ordered",
+      "DELIVERED": "Delivered",
+      "CANCELLED": "Cancelled"
+    }
+  },
+  "alerts": {
+    "title": "Alerts",
+    "lowStock": "Low Stock Alert",
+    "expiryWarning": "Expiry Warning",
+    "wasteAlert": "Waste Alert",
+    "yieldVariance": "Yield Variance",
+    "critical": "Critical",
+    "warning": "Warning",
+    "info": "Information"
+  },
+  "profile": {
+    "title": "Profile",
+    "personalInfo": "Personal Information",
+    "restaurantInfo": "Restaurant Information",
+    "settings": "Settings",
+    "language": "Language",
+    "currency": "Currency",
+    "notifications": "Notifications",
+    "security": "Security"
+  },
+  "setup": {
+    "title": "Restaurant Setup",
+    "restaurantName": "Restaurant Name",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "cuisineType": "Cuisine Type",
+    "ownerName": "Owner Name",
+    "setupComplete": "Setup Complete",
+    "welcomeMessage": "Welcome to RestMan! Let's set up your restaurant."
+  },
+  "roles": {
+    "owner": "Owner",
+    "manager": "Manager",
+    "chef": "Chef",
+    "waiter": "Waiter"
+  },
+  "navigation": {
+    "dashboard": "Dashboard",
+    "inventory": "Inventory",
+    "menu": "Menu",
+    "orders": "Orders",
+    "recipes": "Recipes",
+    "procurement": "Procurement",
+    "alerts": "Alerts",
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "time": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "thisWeek": "This Week",
+    "thisMonth": "This Month",
+    "lastMonth": "Last Month",
+    "minutes": "minutes",
+    "hours": "hours",
+    "days": "days"
+  },
+  "analytics": {
+    "title": "Analytics",
+    "revenue": "Revenue",
+    "orders": "Orders",
+    "waste": "Waste",
+    "efficiency": "Efficiency",
+    "trends": "Trends",
+    "comparison": "Comparison",
+    "period": "Period"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark All as Read",
+    "noNotifications": "No notifications",
+    "newOrder": "New order received",
+    "lowStock": "Low stock alert",
+    "expiryWarning": "Item expiring soon",
+    "wasteAlert": "High waste detected"
+  },
+  "errors": {
+    "networkError": "Network error. Please check your connection.",
+    "serverError": "Server error. Please try again later.",
+    "validationError": "Please check your input and try again.",
+    "unauthorized": "You are not authorized to perform this action.",
+    "notFound": "The requested resource was not found."
+  },
+  "success": {
+    "itemAdded": "Item added successfully",
+    "itemUpdated": "Item updated successfully",
+    "itemDeleted": "Item deleted successfully",
+    "orderPlaced": "Order placed successfully",
+    "orderUpdated": "Order updated successfully",
+    "setupComplete": "Restaurant setup completed successfully"
+  }
+} 
