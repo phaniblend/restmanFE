@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { supabase } from '@/lib/supabase'
 import { authService } from '@/lib/auth-service'
 import toast from 'react-hot-toast'
+import { getCurrentUser } from '@/lib/auth-context'
 
 interface MenuItem {
   id: string
@@ -29,12 +30,14 @@ export default function MenuManagementPage() {
   const [selectedCategory, setSelectedCategory] = useState('ALL')
   const [editingItem, setEditingItem] = useState<MenuItem | null>(null)
   const [isAddingNew, setIsAddingNew] = useState(false)
+  const [currentUser, setCurrentUser] = useState<any>(null)
 
   // Categories
   const categories = ['ALL', 'APPETIZER', 'MAIN_COURSE', 'DESSERT', 'BEVERAGE', 'SPECIAL']
 
   useEffect(() => {
     loadMenuItems()
+    setCurrentUser(getCurrentUser())
   }, [])
 
   const loadMenuItems = async () => {
@@ -70,6 +73,13 @@ export default function MenuManagementPage() {
     setIsLoading(true)
     try {
       const restaurant = await authService.getUserRestaurant()
+      const currentUser = getCurrentUser()
+      // Only allow owner to update price
+      if (item.price !== undefined && currentUser?.role !== 'owner') {
+        toast.error('Only owner can edit price')
+        setIsLoading(false)
+        return
+      }
       console.log('Saving menu item:', item, 'for restaurant:', restaurant)
       if (!restaurant) {
         // Demo mode - just update local state
@@ -336,6 +346,10 @@ function EditMenuItemModal({
     is_available: item?.is_available ?? true,
     recipe_id: item?.recipe_id || null
   })
+  const [currentUser, setCurrentUser] = useState<any>(null)
+  useEffect(() => {
+    setCurrentUser(getCurrentUser())
+  }, [])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -414,15 +428,24 @@ function EditMenuItemModal({
             </label>
             <div className="relative">
               <DollarSign className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input
-                type="number"
-                step="0.01"
-                min="0"
-                value={formData.price}
-                onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) || 0 })}
-                className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-                required
-              />
+              {currentUser?.role === 'owner' ? (
+                <input
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  value={formData.price}
+                  onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) || 0 })}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  required
+                />
+              ) : (
+                <input
+                  type="number"
+                  value={formData.price}
+                  readOnly
+                  className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg bg-gray-100 text-gray-500 cursor-not-allowed"
+                />
+              )}
             </div>
           </div>
 
